@@ -1,0 +1,15 @@
+char   **ft_rang(char ***tab, int e);
+int    ft_countarg(char *str, char *needle, char ***tab,int j);
+//int	   *ft_indices(char ***tab, char **xtab, int *indices);
+int    *ft_indices(char *arg);
+char   **ft_tab(char *arg, char **indices);
+char   **ft_flag(char *arg, char *str);
+void   ft_swap(char **a, char **b);
+int	   ft_strcmp(char **s1, char **s2);
+char   **ft_rangadrs(char **tab, int e);
+char   *ft_trimarg(char *arg);
+char   *ft_realloc(char **arg);
+int    ft_isparam(int a);
+int    ft_isflag(int a);
+int    ft_count(char *arg);
+int    *ft_indices(char *arg);
