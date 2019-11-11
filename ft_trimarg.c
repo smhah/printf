@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "libft/libft.h"
+#include "printf.h"
 
 int	ft_isflag(int a)
 {
@@ -16,20 +17,18 @@ int ft_isparam(int a)
 		return (1);
 	else if(a == 's')
 		return (2);
-	else if(a == 'i')
-		return (3);
 	else if(a == 'p')
-		return (4);
+		return (3);
 	else if(a == 'i')
-		return (5);
+		return (4);
 	else if(a == 'u')
-		return (6);
+		return (5);
 	else if(a == 'x')
-		return (7);
+		return (6);
 	else if(a == 'X')
-		return (8);
+		return (7);
 	else if(a == '%')
-		return (9);
+		return (8);
 	return(-1);
 }
 
@@ -52,29 +51,29 @@ char *ft_realloc(char **arg)
 
 char *ft_trimarg(char *arg)
 {
-	char *newarg;
+	char *str;
 	int i;
 	int j;
 
-	newarg = malloc(sizeof(char) * (ft_strlen(arg) + 1));
+	str = malloc(sizeof(char) * (ft_strlen(arg) + 1));
 	j = 0;
     i = 0;
 	while (arg[i])
 	{
 		while (arg[i] != '%' && arg[i])
-			newarg[j++] = arg[i++];
+			str[j++] = arg[i++];
         if (arg[i] == '\0')
             break;
-			newarg[j++] = arg[i++];
+			str[j++] = arg[i++];
         while(ft_isflag(arg[i]))
             i++;
 		if(ft_isparam(arg[i]) >= 0)
-			newarg[j++] = arg[i++];
+			str[j++] = arg[i++];
  	}
-	 newarg[j] = '\0';
-     newarg = ft_realloc(&newarg);
-     printf("%s", newarg);
-	 return (newarg);
+	 str[j] = '\0';
+     str = ft_realloc(&str);
+     //printf("%s", str);
+	 return (str);
 }
 
 // int main ()

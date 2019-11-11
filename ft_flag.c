@@ -1,4 +1,27 @@
-char **ft_flag(char *arg, char *str)
+#include "libft/libft.h"
+
+int *ft_addarg(int **indices, int count, int a)
+{
+	int temp;
+	int *newindices;
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	newindices = malloc(sizeof(int) * count * 2);
+	temp = (*indices)[a];
+	(*indices)[a] = 0;
+	while (i < a)
+		newindices[i++] = (*indices)[j++];
+	newindices[i++] = 0;
+	while(j <= count)
+		newindices[i++] = (*indices)[j++];
+	free(*indices);
+	return(newindices);
+}
+
+char **ft_flag(char *arg, char *str, int *indice)
 {
 	int count;
 	int i;
@@ -7,7 +30,7 @@ char **ft_flag(char *arg, char *str)
 	int a;
 
 	count = ft_count(str);
-	tab = malloc(sizeof(char *) * count + 1);
+	tab = malloc(sizeof(char *) * (count + 1));
 	a = 0;
 	i = 0;
 	while(arg[i])
@@ -19,7 +42,14 @@ char **ft_flag(char *arg, char *str)
 			while(ft_isflag(arg[i]))
 				i++;
 			if((ft_isparam(arg[i]) >= 0))
-				tab[a++] = ft_substr(arg, save, i - save);
+			{
+				tab[a] = ft_substr(arg, save, i - save);
+				if(ft_strchr(tab, '*'))
+				{
+					ft_addarg(&indice, count, a);
+				}
+				a++;
+			}
 		}
 		i++;
 	}
