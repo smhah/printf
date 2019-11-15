@@ -6,7 +6,7 @@
 int ft_printf(const char *arg, ...)
 {
     char *str;
-    int  *indices;
+    char  *indices;
     char **flags;
     va_list n;
 

@@ -43,11 +43,42 @@ int ft_count(char *arg)
     return(c);
 }
 
-int *ft_indices(char **str)
+int ft_easyetoiles(char *indices)
+{
+    int i;
+    int c;
+
+    while(indices[i])
+    {
+        while(indices[i] == '9' && indices[i])
+            i++;
+        if (indices[i++] == '\0')
+            break;
+        c++;
+    }
+    return (c);
+}
+
+int ft_easycount(char *indices)
+{
+    int i;
+    int c;
+
+    while(indices[i])
+    {
+        while(indices[i] == '9' && indices[i++])
+            c++;
+        if (indices[i++] == '\0')
+            break;
+    }
+    return (c);
+}
+
+char *ft_indices(char **str)
 {
     int i;
     int j;
-    int *indices;
+    char *indices;
     int a;
 
     i = 0;
@@ -61,13 +92,15 @@ int *ft_indices(char **str)
             {
                 if((a = ft_isparam((*str)[i], 0)) >= 0)
                 {
-                    indices[j++] = a;
+                    indices[j++] = a + 48;
                     break ;
                 }
                 else if((*str)[i++] == '*')
-                    indices[j++] = 9;
+                    indices[j++] = 9 + 48;
             }
         }
     }
-    return(indices);
+    indices[j] = '\0';
+    printf("%s", indices);
+    return (indices);
 }

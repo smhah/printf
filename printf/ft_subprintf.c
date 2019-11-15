@@ -67,7 +67,7 @@ char *ft_char(char s)
     str[0] = s;
     return(str);
 }
-void    ft_valist(va_list n, int *indices, char **etoiles, char **tab)
+void    ft_valist(va_list n, char *indices, char **etoiles, char **tab)
 {
     int i;
     int k;
@@ -78,28 +78,27 @@ void    ft_valist(va_list n, int *indices, char **etoiles, char **tab)
     i = 0;
     k = 0;
     j = 0;
-    while (1)
+    while (indices[i])
     {     
-        if (indices[i++] == 9)
+        if (indices[i] == '9')
             etoiles[k++] = ft_itoa(va_arg(n, int));
-        if (indices[i] == 0 || indices[i] == 4)
+        else if (indices[i] == '0' || indices[i] == '4')
 		    tab[j++] = ft_itoa(va_arg(n, int));
-	    else if(indices[i] == 1)
+	    else if(indices[i] == '1')
 	 	    tab[j++] = ft_char(va_arg(n, int));
-        else if(indices[i] == 2)
+        else if(indices[i] == '2')
 	 	    tab[j++] = ft_str(va_arg(n, char *));
 	// else if(indices[i] == 3)
 	// 	tab[j++] = va_arg();
-	    else if(indices[i] == 5)
+	    else if(indices[i] == '5')
 	 	    tab[j++] = ft_untoa(va_arg(n, unsigned int));
-	    else if(indices[i] == 6)
+	    else if(indices[i] == '6')
 	 	    tab[j++] = ft_printhexa(va_arg(n, unsigned int));
-	// else if(indices[i] == 7)
+	// else if(indices[i] == '7')
 	// 	tab[j++] = va_arg();
-	// else if(indices[i] == 8)
+	// else if(indices[i] == '8')
 	// 	tab[j++] = va_arg();
-        if(tab[j - 1] == 0 && etoiles[k - 1] == 0)
-            break;
+        i++;
     }
     i = 0;
     j = 0;
@@ -111,13 +110,12 @@ void    ft_valist(va_list n, int *indices, char **etoiles, char **tab)
         printf("|%s\n", etoiles[j++]);
 }
 
-void ft_subprintf(int *indices, char **flags, va_list n, char **str)
+void ft_subprintf(char *indices, char **flags, va_list n, char **str)
 {
     char **tab;
     char **etoiles;
     int count;
 
-    printf("T");
     count = ft_count(*str);
     etoiles = malloc(sizeof(int) * (ft_countetoiles(*str) + 1));
     //attention time ouuuut !!!!
