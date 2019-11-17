@@ -5,7 +5,7 @@
 
 int	ft_isflag(int a)
 {
-	if ((a >= '0' && a <= '9' )|| a == '.' || a == '-' || a == ' ' || a == '+')
+	if ((a >= '0' && a <= '9' )|| a == '.' || a == '-' ||  a == '+')
 		return (1);
 	return (0);
 }
@@ -48,7 +48,7 @@ char *ft_realloc(char **arg)
         i++;
     }
     buf[i] = '\0';
-    free(*arg);
+    //free(*arg);
     return(buf);
 }
 
@@ -63,21 +63,19 @@ char *ft_trimarg(char *arg)
     i = 0;
 	while (arg[i])
 	{
-		while (arg[i] != '%' && arg[i] && (!ft_isflag(arg[i])))
-			str[j++] = arg[i++];
-        if (arg[i] == '\0')
-            break;
+			while (arg[i] != '%' && arg[i])
+				str[j++] = arg[i++];
+        	if (arg[i] == '\0')
+            	break;
 			if(arg[i] == '%')
 				str[j++] = arg[i++];
-        while(ft_isflag(arg[i]))
-            i++;
-		if(ft_isparam(arg[i], 0) >= 0)
-			str[j++] = arg[i++];
+        	while(ft_isflag(arg[i]))
+            	i++;
+			if(ft_isparam(arg[i], 0) >= 0)
+				str[j++] = arg[i++];
  	}
 	 str[j] = '\0';
      str = ft_realloc(&str);
-    //  printf("%s\n", str);
-	//  ft_indices(&str);
 	 return (str);
 }
 

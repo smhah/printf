@@ -19,6 +19,15 @@ int ft_strcpy(char *str1, char *str2, int j)
     return (i);
 }
 
+// void ft_addnega(char **tab)
+// {
+//     char s1;
+//     char *temp;
+
+//     s1 = ft_strdup("-");
+//     temp = *tab
+//     tab = strjoin(s1,tab);
+// }
 void ft_output(char **tab, char **str, int count)
 {
     int i;
@@ -41,13 +50,17 @@ void ft_output(char **tab, char **str, int count)
         if ((*str)[i] == '\0')
             break;
         if(ft_isparam((*str)[++i], 0) >= 0)
+        {
+            // if(indices[sm] == 'n')
+            //     ft_addnega(tab[sm]);
             j = ft_strcpy(&s[j], tab[sm++], j);
+        }
         else
             s[j++] = (*str)[i];
             i++;
     }
     s[j] = '\0';
-    printf("%s\n", s);
+    printf("%s", s);
 }
 
 char *ft_str(char *s)
@@ -67,14 +80,17 @@ char *ft_char(char s)
     str[0] = s;
     return(str);
 }
+
+// char *ft_percent(void)
+// {
+
+// }
 void    ft_valist(va_list n, char *indices, char **etoiles, char **tab)
 {
     int i;
     int k;
     int j;
-    int count;
 
-    count = 0;
     i = 0;
     k = 0;
     j = 0;
@@ -96,34 +112,51 @@ void    ft_valist(va_list n, char *indices, char **etoiles, char **tab)
 	 	    tab[j++] = ft_printhexa(va_arg(n, unsigned int));
 	// else if(indices[i] == '7')
 	// 	tab[j++] = va_arg();
-	// else if(indices[i] == '8')
-	// 	tab[j++] = va_arg();
+	    else if(indices[i] == '8')
+	        tab[j++] = ft_strdup("%");
+        if (indices[i] == '0' && (atoi(tab[j-1]) < 0))
+            indices[i] = 'n';
         i++;
     }
-    i = 0;
-    j = 0;
-    while(tab[i])
-    {
-        printf("%s\n", tab[i++]);
-    }
-    while(etoiles[j])
-        printf("|%s\n", etoiles[j++]);
+    tab[j] = NULL;
+    etoiles[k] = NULL;
 }
 
-void ft_subprintf(char *indices, char **flags, va_list n, char **str)
+char    *ft_deletoiles(char **str)
+{
+    char *newstr;
+    int i;
+    int j;
+
+    j = 0;
+    i = 0;
+    newstr = malloc(ft_strlen(*str) + 1);
+    while((*str)[i])
+    {
+        if((*str)[i] != '*')
+            newstr[j++] = (*str)[i];
+        i++;
+    }
+    newstr[j] = '\0';
+    free(*str);
+    return(newstr);
+}
+
+void    ft_subprintf(char *indices, char **flags, va_list n, char **str)
 {
     char **tab;
-    char **etoiles;
     int count;
+    char **etoiles;
 
     count = ft_count(*str);
-    etoiles = malloc(sizeof(int) * (ft_countetoiles(*str) + 1));
-    //attention time ouuuut !!!!
-    etoiles[ft_countetoiles(*str) + 1] = 0;
-    tab = malloc(sizeof(char *) * (count + 1));
-    tab[count + 1] = 0;
+    etoiles = (char **)malloc(sizeof(char *) * (ft_countetoiles(*str) + 1 ));
+    tab = (char **)malloc(sizeof(char *) * (count + 1));
     ft_valist(n, indices, etoiles, tab);
-    tab = flags;
-    // ft_activeflag(flags, tab, etoiles);
-    // ft_output(tab, str, count);
+    ft_activeflag(flags, tab, etoiles);
+    printf("safter is : %s\n", *str);
+    if (ft_strchr(*str, '*'))
+        *str = ft_deletoiles(str);
+    printf("s is :%s\n", *str);
+    //*str = ft_percent(str);
+    ft_output(tab, str, count);
 }

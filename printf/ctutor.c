@@ -95,7 +95,7 @@ int ft_countarg(char *str, char *needle)
 		}
 	}
 	return (i);
-	printf("|%d|", i);
+//	printf("|%d|", i);
 }
 
 char **ft_remplir(char **str, char *arg, int i)

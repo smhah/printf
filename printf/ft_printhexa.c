@@ -34,6 +34,7 @@ char    *ft_reverse(char *str)
     while (--i >= 0)
         rev[j++] = str[i];
     rev[j] = '\0';
+    free (str);
     return (rev);
 }
 
@@ -58,6 +59,5 @@ char    *ft_printhexa(int n)
     temp[i] = '\0';
     e = 0;
     rev = ft_reverse(temp);
-    free(temp);;
     return (rev);
 }

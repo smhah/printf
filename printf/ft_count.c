@@ -35,7 +35,9 @@ int ft_count(char *arg)
     {
         if (arg[i++] == '%')
         {
-            c++; 
+            c++;
+            if (arg[i] == '%')
+                i++;
             while (arg[i] != '%' && arg[i])
                 i++;   
         }
@@ -43,11 +45,13 @@ int ft_count(char *arg)
     return(c);
 }
 
-int ft_easyetoiles(char *indices)
+int ft_fastetoiles(char *indices)
 {
     int i;
     int c;
 
+    c = 0;
+    i = 0;
     while(indices[i])
     {
         while(indices[i] == '9' && indices[i])
@@ -59,11 +63,13 @@ int ft_easyetoiles(char *indices)
     return (c);
 }
 
-int ft_easycount(char *indices)
+int ft_fastcount(char *indices)
 {
     int i;
     int c;
 
+    i = 0;
+    c = 0;
     while(indices[i])
     {
         while(indices[i] == '9' && indices[i++])
@@ -101,6 +107,5 @@ char *ft_indices(char **str)
         }
     }
     indices[j] = '\0';
-    printf("%s", indices);
     return (indices);
 }

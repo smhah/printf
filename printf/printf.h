@@ -20,5 +20,7 @@ char   *ft_indices(char **str);
 void   ft_subprintf(char *indices, char **flags, va_list n, char **str);
 char   *ft_untoa(unsigned int n);
 char   *ft_printhexa(int n);
-char   *ft_activeflag(char **flags, char **tab, char **etoiles);
+void   ft_activeflag(char **flags, char **tab, char **etoiles);
 int    ft_countetoiles(char *arg);
+int    ft_strcpy(char *str1, char *str2, int j);
+char   *ft_reverse(char *str);
