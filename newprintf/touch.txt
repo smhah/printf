@@ -1,0 +1,7 @@
+CONV i-d 21/40 100%
+CONV u 15/26 100%
+CONV x 20/39 100%
+CONV c 8/8 100%
+CONV s 15/15 100%
+CONV percent 11/12 100%
+CONV p 7/7 100%ls
