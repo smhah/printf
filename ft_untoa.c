@@ -1,6 +1,6 @@
 #include "libft/libft.h"
-
-static char	*ft_unsigneditoa(char *s, unsigned int n, int *p)
+#include "ft_printf.h"
+static char	*ft_unsigneditoa(char *s, unsigned long long n, int *p)
 {
 	if (n <= 9)
 		s[*p] = n + 48;
@@ -13,7 +13,7 @@ static char	*ft_unsigneditoa(char *s, unsigned int n, int *p)
 	return (s);
 }
 
-static char	*condition2(int n, int len, int *p)
+static char	*condition2(unsigned long long n, int len, int *p)
 {
 	char *str;
 

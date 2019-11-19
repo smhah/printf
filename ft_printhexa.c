@@ -2,6 +2,7 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
 int     ft_counthexa(int n)
 {
@@ -22,6 +23,19 @@ int     ft_counthexa(int n)
     return (i);
 }
 
+void    ft_setup(char **rev)
+{
+    int i;
+
+    i = 0;
+    while((*rev)[i] != '\0')
+    {
+        if((*rev)[i] >= 'A' && (*rev)[i] <= 'Z')
+            (*rev)[i] = (*rev)[i] + 32;
+            i++;
+    }
+}
+
 char    *ft_reverse(char *str)
 {
     char *rev;
@@ -34,16 +48,20 @@ char    *ft_reverse(char *str)
     while (--i >= 0)
         rev[j++] = str[i];
     rev[j] = '\0';
+    free (str);
+    ft_setup(&rev);
     return (rev);
 }
 
-char    *ft_printhexa(int n)
+char    *ft_printhexa(unsigned long long n)
 {
     char *temp;
     char *rev;
     int e;
     int i;
     
+    if (n == 0 && (rev = ft_strdup("0")))
+        return(rev);
     i = 0;
     temp = malloc(sizeof(char) * (1 + ft_counthexa(n)));
     while (n > 0)
@@ -58,6 +76,5 @@ char    *ft_printhexa(int n)
     temp[i] = '\0';
     e = 0;
     rev = ft_reverse(temp);
-    free(temp);;
     return (rev);
 }

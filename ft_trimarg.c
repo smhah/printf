@@ -1,17 +1,20 @@
 #include <stdio.h>
-#include "libft/libft.h"
-#include "printf.h"
+#include <stdlib.h>
+#include "ft_printf.h"
+#include <string.h>
 
 int	ft_isflag(int a)
 {
-	if (ft_isdigit(a) || a == '.' || a == '-' || a == ' ' || a == '+' || a == '*')
+	if ((a >= '0' && a <= '9' )|| a == '.' || a == '-' ||  a == '+' || a == '*')
 		return (1);
 	return (0);
 }
 
-int ft_isparam(int a)
+int ft_isparam(int a, int b)
 {
-	if (a == 'd')
+	if (a == '*' && b == 1)
+		return(9);
+	else if (a == 'd')
 		return(0);
 	else if(a == 'c')
 		return (1);
@@ -38,14 +41,14 @@ char *ft_realloc(char **arg)
     int i;
 
     i = 0;
-    buf = malloc(ft_strlen(*arg) + 1);
+    buf = malloc(strlen(*arg) + 1);
     while(arg[0][i])
     {
         buf[i] = arg[0][i];
         i++;
     }
     buf[i] = '\0';
-    free(*arg);
+    //free(*arg);
     return(buf);
 }
 
@@ -55,29 +58,33 @@ char *ft_trimarg(char *arg)
 	int i;
 	int j;
 
-	str = malloc(sizeof(char) * (ft_strlen(arg) + 1));
+	str = malloc(sizeof(char) * (strlen(arg) + 1));
 	j = 0;
     i = 0;
 	while (arg[i])
 	{
-		while (arg[i] != '%' && arg[i])
-			str[j++] = arg[i++];
-        if (arg[i] == '\0')
-            break;
-			str[j++] = arg[i++];
-        while(ft_isflag(arg[i]))
-            i++;
-		if(ft_isparam(arg[i]) >= 0)
-			str[j++] = arg[i++];
+			while (arg[i] != '%' && arg[i])
+				str[j++] = arg[i++];
+        	if (arg[i] == '\0')
+            	break;
+				str[j++] = arg[i++];
+        	while(ft_isflag(arg[i]))
+			{
+				if (arg[i] == '*')
+					str[j++] = arg[i++];
+				else
+            		i++;
+			}
+			if(ft_isparam(arg[i], 0) >= 0)
+				str[j++] = arg[i++];
  	}
 	 str[j] = '\0';
      str = ft_realloc(&str);
-     //printf("%s", str);
 	 return (str);
 }
 
 // int main ()
 
 // {
-//     ft_trimarg("%--213221300.12dsalah%            ------------321321ceddine%.231123123123cmhah%c");
+//     ft_trimarg("***********************%123123123123123*s**************%123123123123123*d*********");
 // }

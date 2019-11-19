@@ -1,27 +1,7 @@
 #include "libft/libft.h"
+#include "ft_printf.h"
 
-int *ft_addarg(int **indices, int count, int a)
-{
-	int temp;
-	int *newindices;
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	newindices = malloc(sizeof(int) * count * 2);
-	temp = (*indices)[a];
-	(*indices)[a] = 0;
-	while (i < a)
-		newindices[i++] = (*indices)[j++];
-	newindices[i++] = 0;
-	while(j <= count)
-		newindices[i++] = (*indices)[j++];
-	free(*indices);
-	return(newindices);
-}
-
-char **ft_flag(char *arg, char *str, int *indice)
+char **ft_flag(char *arg, char *str)
 {
 	int count;
 	int i;
@@ -39,27 +19,27 @@ char **ft_flag(char *arg, char *str, int *indice)
 		if (arg[i++] == '%')
 		{
 			save = i;
-			while(ft_isflag(arg[i]))
+			while(ft_isflag(arg[i]) || arg[i] == '*')
 				i++;
-			if((ft_isparam(arg[i]) >= 0))
+			if((ft_isparam(arg[i], 0) >= 0))
 			{
 				tab[a] = ft_substr(arg, save, i - save);
-				if(ft_strchr(tab, '*'))
-				{
-					ft_addarg(&indice, count, a);
-				}
 				a++;
 			}
 		}
-		i++;
 	}
 	tab[a] = NULL;
+	// a = 0;
+	// while (tab[a] != NULL)
+	// {
+	// 	printf("%s\n", tab[a++]);
+	// }
 	return (tab);
 }
-int main ()
-{
-	//ft_tab("%112dddkfjhsdfjk%cdslgkdfgl%sfldkgjdf%ssdfjdfg%c", 12, 'c', "TRI", 'C');
-	//printf("%3654654d\n", 500, 50);
-	//ft_flag("%123123d%123234d\n", 500, 50);
-	ft_flag("asdas%dsd%---12sdsdsd%.12c","%d%s%c");
-}
+// int main ()
+// {
+// 	//ft_tab("%112dddkfjhsdfjk%cdslgkdfgl%sfldkgjdf%ssdfjdfg%c", 12, 'c', "TRI", 'C');
+// 	//printf("%3654654d\n", 500, 50);
+// 	//ft_flag("%123123d%123234d\n", 500, 50);
+// 	ft_flag("a%dsd%-12sn%.12c%x%*-234*X","%d%s%c%x%X");
+// }
