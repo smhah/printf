@@ -39,6 +39,16 @@ void	ft_activepercent(char *flags, char **tab, int i, char **strnum)
 	return (ft_free1(strnum));
 }
 
+int		ft_putscount(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+		ft_putc(s[i++]);
+	return (i);
+}
+
 void	ft_toactivep(char **tab, char **flags, char **str, int i)
 {
 	if ((*str)[0])

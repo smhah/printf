@@ -65,30 +65,38 @@ void	ft_toactive(char **tab, char **flags, char **str, int i)
 	ft_active(*flags, &(*tab), i, str);
 }
 
-int		ft_activeflag(char **flags, char **tab)
+int		ft_free12(char **str)
+{
+	free(*str);
+	*str = NULL;
+	return (1);
+}
+
+int		ft_activeflag(char **flags, char **tab, char **str)
 {
 	int		i;
 	int		j;
-	char	*str;
 
-	str = NULL;
 	if (*flags && **flags != '\0')
 	{
 		i = ft_strlen(*flags);
 		j = 0;
 		while (--i >= 0)
 		{
-			if (str == NULL && (j = 0) >= 0)
-				str = malloc(ft_strlen(*flags) + 1);
+			if (*str == NULL && (j = 0) >= 0)
+				*str = malloc(ft_strlen(*flags) + 1);
 			if (ft_isdigit((*flags)[i]))
-				str[j++] = (*flags)[i];
-			if (str && ft_cnd2((*flags)[i], str[j - 1], i, *flags) > 0 &&
-					(str[j] = '\0') == '\0')
-				ft_toactive(tab, flags, &str, i);
-			if (str && ft_cnd2((*flags)[i], str[j - 1], i, &(*flags)[0]) < 0)
-				ft_free1(&str);
+				(*str)[j++] = (*flags)[i];
+			if (ft_cnd2((*flags)[i], (*str)[j - 1], i, *flags) == -2
+				&& ft_atoi(*tab) == 0)
+				i -= ft_free12(str);
+			if (*str && ft_cnd2((*flags)[i], (*str)[j - 1], i, *flags) > 0 &&
+					((*str)[j] = '\0') == '\0')
+				ft_toactive(tab, flags, str, i);
+			if (*str && ft_cnd2((*flags)[i],
+				(*str)[j - 1], i, &(*flags)[0]) < 0)
+				ft_free1(str);
 		}
 	}
-	ft_puts(*tab);
-	return (ft_strlen(*tab));
+	return (ft_putscount(*tab));
 }

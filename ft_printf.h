@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
+# include <stdio.h>
 
 int		ft_toupper(int a);
 int		ft_printf(const char*format, ...);
@@ -29,7 +30,6 @@ char	*ft_indices(char **str);
 int		ft_subprintf(char *indices, char **flags, va_list n, char **str);
 char	*ft_untoa(unsigned int n);
 char	*ft_printhexa(unsigned int n);
-int		ft_activeflag(char **flags, char **tab);
 int		ft_countetoiles(char *arg);
 int		ft_strcpy(char *str1, char *str2, int j);
 char	*ft_reverse(char *str);
@@ -74,5 +74,7 @@ char	*ft_char(char s);
 char	*ft_str(char *s);
 void	ft_freeadresse(va_list n, char **tab);
 char	*ft_toper(char *str);
+int		ft_activeflag(char **flags, char **tab, char **str);
+int		ft_putscount(char *s);
 
 #endif

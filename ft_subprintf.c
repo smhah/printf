@@ -95,7 +95,7 @@ int		ft_wichactive(char **flags, char **tab, char *indices, char **str)
 			(*str)[g_k] && ((s = s + 1) >= 0))
 			ft_putc((*str)[g_k++]);
 		if (ft_checkindices1(indices, g_i) && (g_j = g_j + 1) >= 0)
-			s = ft_activeflag(&flags[g_j], &tab[g_j]) + s;
+			s = ft_activeflag(&flags[g_j], &tab[g_j], &str2) + s;
 		else if ((indices[g_i] == '2') && (g_j = g_j + 1) >= 0)
 			s = ft_activeflags(&flags[g_j], &tab[g_j]) + s;
 		else if (indices[g_i] == '1' && (g_j = g_j + 1) >= 0)
