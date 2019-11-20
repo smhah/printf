@@ -1,51 +1,42 @@
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flag.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smhah <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/20 12:27:01 by smhah             #+#    #+#             */
+/*   Updated: 2019/11/20 12:30:02 by smhah            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char **ft_flag(char *arg, char *str)
+char	**ft_flag(char *arg, char *str)
 {
-	int count;
-	int i;
-	char **tab;
-	int save;
-	int a;
+	int		count;
+	int		i;
+	char	**tab;
+	int		save;
+	int		a;
 
 	count = ft_count(str);
 	tab = malloc(sizeof(char *) * (count + 1));
 	a = 0;
 	i = 0;
-	while(arg[i])
+	while (arg[i] && (save = 0) >= 0)
 	{
-		save = 0;
-		if (arg[i++] == '%')
+		if (arg[i++] == '%' && (save = i) >= 0)
 		{
-			save = i;
-			while((arg[i] && (ft_isflag(arg[i]) || arg[i] == '*')))
+			while ((arg[i] && (ft_isflag(arg[i]) || arg[i] == '*')))
 				i++;
-			if(( arg[i] && (ft_isparam(arg[i], 0) >= 0)))
+			if ((arg[i] && (ft_isparam(arg[i], 0) >= 0)))
 			{
-				tab[a] = ft_substr(arg, save, i - save);
-				a++;
+				tab[a++] = ft_substr(arg, save, i - save);
 				i++;
 			}
 		}
 	}
 	tab[a] = NULL;
-	// printf("\n\n\n");
-	// printf("tab[1]:%s\n\n\n", tab[0]);
-	// while (tab[a])
-	// 	printf("%s\n", tab[a++]);
-	// printf("\n\n\n");
-	// a = 0;
-	// while (tab[a] != NULL)
-	// {
-	// 	printf("%s\n", tab[a++]);
-	// }
 	return (tab);
 }
-// int main ()
-// {
-// 	//ft_tab("%112dddkfjhsdfjk%cdslgkdfgl%sfldkgjdf%ssdfjdfg%c", 12, 'c', "TRI", 'C');
-// 	//printf("%3654654d\n", 500, 50);
-// 	//ft_flag("%123123d%123234d\n", 500, 50);
-// 	ft_flag("a%dsd%-12sn%.12c%x%*-234*X","%d%s%c%x%X");
-// }

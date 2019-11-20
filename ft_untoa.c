@@ -1,5 +1,17 @@
-#include "libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_untoa.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smhah <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/20 13:47:09 by smhah             #+#    #+#             */
+/*   Updated: 2019/11/20 13:47:12 by smhah            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
 static char	*ft_unsigneditoa(char *s, unsigned long long n, int *p)
 {
 	if (n <= 9)
@@ -54,8 +66,8 @@ char		*ft_untoa(unsigned int n)
 	}
 	i = 0;
 	p = &i;
-	 if (n > 0)
-	str = condition2(n, len, p);
+	if (n > 0)
+		str = condition2(n, len, p);
 	else
 		return (condition3(len));
 	return (str);
