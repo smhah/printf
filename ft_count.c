@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
+int r = 0;
+
 int ft_countetoiles(char *arg)
 {
     int i;
@@ -94,15 +96,23 @@ char *ft_indices(char **str)
     {
         if((*str)[i++] == '%')
         {
-            if((*str)[i] == '%')
-                indices[j++] = ft_isparam((*str)[i], 0) + 48;
-            while ((*str)[i] != '%' && (*str)[i])
+
+            // if((*str)[i] == '%')
+            //     indices[j++] = ft_isparam((*str)[i], 0) + 48;
+            // while ((*str)[i] != '%' && (*str)[i])
+            while((*str)[i])
             {
                 if(((a = ft_isparam((*str)[i], 0)) >= 0)
                         && (indices[j++] = a + 48))
-                    break ;
-                else if((*str)[i++] == '*')
+                        {
+                            i++;
+                            break;
+                        }
+                else if((*str)[i] == '*')
+                {
                     indices[j++] = 9 + 48;
+                    i++;
+                }
             }
         }
     }

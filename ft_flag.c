@@ -19,16 +19,22 @@ char **ft_flag(char *arg, char *str)
 		if (arg[i++] == '%')
 		{
 			save = i;
-			while(ft_isflag(arg[i]) || arg[i] == '*')
+			while((arg[i] && (ft_isflag(arg[i]) || arg[i] == '*')))
 				i++;
-			if((ft_isparam(arg[i], 0) >= 0))
+			if(( arg[i] && (ft_isparam(arg[i], 0) >= 0)))
 			{
 				tab[a] = ft_substr(arg, save, i - save);
 				a++;
+				i++;
 			}
 		}
 	}
 	tab[a] = NULL;
+	// printf("\n\n\n");
+	// printf("tab[1]:%s\n\n\n", tab[0]);
+	// while (tab[a])
+	// 	printf("%s\n", tab[a++]);
+	// printf("\n\n\n");
 	// a = 0;
 	// while (tab[a] != NULL)
 	// {

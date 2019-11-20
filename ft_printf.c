@@ -59,29 +59,37 @@ int ft_printf(const char *arg, ...)
 }
 
 // int main()
-// {
-//     int j;
-//     int i;
+//  {
+//       int j;
+//      int i;
 //     char *p;
 
+//     // FOR P USE SIZE_T;
 //     p = NULL;
 //     // DON't FORGET ERROR NEGATIVE
 //     // j = ft_printf("| %s\n,  NULL);
 //     // j = ft_printf(" hello ca%----4c %1c va %10c%-c ??\n" ,'\0', '\n', (char)564, 0);
-//     j = ft_printf("%pb\n", p);
-//      printf("%d\n", j);
-//     // i = printf(" hello ca%----4c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
+//     // ft_printf("%*.*X\n", 1, 0, 10);
+//     j = ft_printf("hello ca%----6c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
+//     printf("%d\n", j);
+//     // printf("%-10cd\n", 0);
+//     // ft_printf("%-10cd\n", 0);
+//     // i = printf(" hello ca%----6c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
     
 
-//     //i = printf("%pb\n");
-//     i = printf("%pb\n", p);
+//     // //i = printf("%pb\n");
+//     i = printf("hello ca%----6c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
 //     printf("%d\n", i);
 //     // ft_printf("|%60.syo\n", "s");
 //     // printf("|%*d|\n", 5, 2);
 //     // printf("\n");
 //     // printf("%s", "%d");
 //     // printf("\n");
-//     // printf("%3.2d", 5);
+//         // ft_printf("s%1s%-100c\n","salah", 'A' );
+//         // //printf("\n");
+//         // printf("s%1s%-100c","salah", 'A' );
+//         // j = printf("dsfsdfdsfdsfdsf%c\n", 'A');
+//         // printf("%d\n", i);
 //     // printf("%saaa", NULL);
 //     return(0);
-// }
+//  }

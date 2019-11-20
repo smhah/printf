@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int     ft_counthexa(int n)
+int     ft_counthexa(unsigned int n)
 {
     int i;
     int e;
@@ -53,7 +53,7 @@ char    *ft_reverse(char *str)
     return (rev);
 }
 
-char    *ft_printhexa(unsigned long long n)
+char    *ft_printhexa(unsigned int n)
 {
     char *temp;
     char *rev;

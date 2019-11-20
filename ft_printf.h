@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string.h>
+#include <unistd.h>
 
 // typedef struct s_list
 // {
@@ -24,7 +25,7 @@ int    ft_count(char *arg);
 char   *ft_indices(char **str);
 int   ft_subprintf(char *indices, char **flags, va_list n, char **str);
 char   *ft_untoa(unsigned int n);
-char   *ft_printhexa(unsigned long long n);
+char   *ft_printhexa(unsigned int n);
 int   ft_activeflag(char **flags, char **tab);
 int    ft_countetoiles(char *arg);
 int    ft_strcpy(char *str1, char *str2, int j);
@@ -44,7 +45,7 @@ int ft_cnd2(int a,int b,int i, char *flags);
 char    *ft_verse(char **str);
 size_t	ft_strlen(const char *str);
 int ft_cnd2s(int a,int b,int i, char *flags);
-void    ft_activeC(char *flags, char **tab , int i, char **strnum);
+int    ft_activeC(char *flags, char **tab , int i, char **strnum);
 int ft_activeflagC(char **flags, char **tab);
 int ft_isdigit(int a);
 int	ft_isalpha(int a);
@@ -54,3 +55,16 @@ void    ft_flagmoin(char **tab, char **add, int indice, int len);
 int			ft_atoi(const char *str);
 int	ft_isalpha(int a);
 int     ft_isnum(char **tab);
+int     ft_countadresse(size_t n);
+void    ft_setup(char **rev);
+char    *ft_reverse(char *str);
+char    *ft_printadresse(size_t n);
+char	*ft_strdup(const char *str);
+void    ft_putc(char c);
+void    ft_puts(char *str);
+void ft_free1(char **strnum);
+void ft_toactive(char **tab, char **flags, char **str, int i);
+void    ft_flagdigitS(char **tab, char **add,int len);
+void    ft_flagmoinS(char **tab, char **add, int len);
+void    ft_flagpoint(char **tab, char **add, int indice, int len);
+void    ft_flagdigit(char **tab, char **add, int indice, int len);

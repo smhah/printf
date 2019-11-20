@@ -35,23 +35,6 @@ int ft_isparam(int a, int b)
 	return(-1);
 }
 
-char *ft_realloc(char **arg)
-{
-    char *buf;
-    int i;
-
-    i = 0;
-    buf = malloc(strlen(*arg) + 1);
-    while(arg[0][i])
-    {
-        buf[i] = arg[0][i];
-        i++;
-    }
-    buf[i] = '\0';
-    //free(*arg);
-    return(buf);
-}
-
 char *ft_trimarg(char *arg)
 {
 	char *str;
@@ -79,7 +62,6 @@ char *ft_trimarg(char *arg)
 				str[j++] = arg[i++];
  	}
 	 str[j] = '\0';
-     str = ft_realloc(&str);
 	 return (str);
 }
 
